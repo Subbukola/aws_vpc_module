@@ -29,7 +29,7 @@ locals {
 
     local.common_tags,
     {
-        Name="${var.project}-${var.env}-public"
+        Name="${var.project}-${var.env}-public-${local.az_names[count.index]}"
     },
     var.public_subnet_tags
   )
