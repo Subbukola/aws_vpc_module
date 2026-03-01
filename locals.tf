@@ -16,7 +16,7 @@ locals {
 
   )
 
-  igw_files_tags= merge(
+  igw_final_tags= merge(
 
     local.common_tags,
     {
@@ -24,6 +24,17 @@ locals {
     },
     var.igw_tags
   )
+
+    public_subnet_final_tags= merge(
+
+    local.common_tags,
+    {
+        Name="${var.project}-${var.env}-igw"
+    },
+    var.public_subnet_tags
+  )
+
+
 }
 
 

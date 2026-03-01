@@ -15,5 +15,17 @@ resource "aws_vpc" "main" {
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
-  tags = local.igw_files_tags
+  tags = local.igw_final_tags
+}
+
+#Public_subnets
+
+resource "aws_subnet" "main" {
+  vpc_id     = aws_vpc.main.id
+  count = length(var.public_cidr)
+  cidr_block = var.public_cidr[count.index]
+
+
+
+  tags = local.public_subnet_final_tags
 }
