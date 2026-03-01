@@ -25,14 +25,7 @@ locals {
     var.igw_tags
   )
 
-    public_subnet_final_tags= merge(
-
-    local.common_tags,
-    {
-        Name="${var.project}-${var.env}-public-${local.az_names[count.index]}"
-    },
-    var.public_subnet_tags
-  )
+    #public_subnet_final_tags= {}
     az_names= slice(data.aws_availability_zones.available.names,0,2)
 
 }

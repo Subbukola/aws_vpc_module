@@ -28,5 +28,12 @@ resource "aws_subnet" "main" {
    map_public_ip_on_launch= true
 
 
-  tags = local.public_subnet_final_tags
+  tags = merge(
+
+    local.common_tags,
+    {
+        Name="${var.project}-${var.env}-public-${local.az_names[count.index]}"
+    },
+    var.public_subnet_tags
+  )
 }
