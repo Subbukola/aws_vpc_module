@@ -19,3 +19,9 @@ variable "env" {
 
   
 }
+
+variable "igw_tags" {
+    type = map(string)
+    default = {}
+  
+}
