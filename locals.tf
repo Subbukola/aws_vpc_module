@@ -9,7 +9,7 @@ locals {
 
     local.common_tags,
     {
-        Name="${var.project}-${var.env}"
+        Name="${var.project}-${var.env}-vpc"
     },
     var.vpc_tags
 
@@ -20,7 +20,7 @@ locals {
 
     local.common_tags,
     {
-        Name="${var.project}-${var.env}"
+        Name="${var.project}-${var.env}-igw"
     },
     var.igw_tags
   )
