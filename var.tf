@@ -76,3 +76,13 @@ variable "private_route_tags" {
     default = {}
   
 }
+
+variable "eip_tags" {
+    default = {}
+  
+}
+
+variable "NAT_tags" {
+    default = {}
+  
+}
