@@ -1,6 +1,6 @@
 
 #VPC
-resource "aws_vpc" "main" {
+resource "aws_vpc" "vpc" {
   cidr_block       = var.vpc_cidr
   instance_tenancy = "default"
   enable_dns_hostnames = true
@@ -13,7 +13,7 @@ resource "aws_vpc" "main" {
 #internet Gateway
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.vpc.id
 
   tags = local.igw_final_tags
 }
@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "gw" {
 #Public_subnets
 
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.vpc.id
   count = length(var.public_cidr)
   cidr_block = var.public_cidr[count.index]
   availability_zone=local.az_names[count.index]
@@ -41,7 +41,7 @@ resource "aws_subnet" "public" {
 #Private_subnets
 
 resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.vpc.id
   count = length(var.public_cidr)
   cidr_block = var.public_cidr[count.index]
   availability_zone=local.az_names[count.index]
@@ -63,7 +63,7 @@ resource "aws_subnet" "private" {
 #Database_subnets
 
 resource "aws_subnet" "database" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.vpc.id
   count = length(var.database_cidr)
   cidr_block = var.database_cidr[count.index]
   availability_zone=local.az_names[count.index]
@@ -81,7 +81,7 @@ resource "aws_subnet" "database" {
 #Public route table
 
 resource "aws_route_table" "public_route" {
-  vpc_id = aws_vpc.example.id
+  vpc_id = aws_vpc.vpc.id
 
 
   tags = local.public_route_final_tags
@@ -91,7 +91,7 @@ resource "aws_route_table" "public_route" {
 #Private route table
 
 resource "aws_route_table" "private_route" {
-  vpc_id = aws_vpc.example.id
+  vpc_id = aws_vpc.vpc.id
 
   tags = local.private_route_final_tags
 }
