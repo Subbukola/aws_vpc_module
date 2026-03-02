@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "gw" {
 #Public_subnets
 
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.public.id
+  vpc_id     = aws_vpc.main.id
   count = length(var.public_cidr)
   cidr_block = var.public_cidr[count.index]
   availability_zone=local.az_names[count.index]
@@ -41,7 +41,7 @@ resource "aws_subnet" "public" {
 #Private_subnets
 
 resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.private.id
+  vpc_id     = aws_vpc.main.id
   count = length(var.public_cidr)
   cidr_block = var.public_cidr[count.index]
   availability_zone=local.az_names[count.index]
@@ -52,9 +52,9 @@ resource "aws_subnet" "private" {
 
     local.common_tags,
     {
-        Name="${var.project}-${var.env}-public-${local.az_names[count.index]}"
+        Name="${var.project}-${var.env}-private-${local.az_names[count.index]}"
     },
-    var.public_subnet_tags
+    var.private_subnet_tags
   )
 }
 
@@ -63,7 +63,7 @@ resource "aws_subnet" "private" {
 #Database_subnets
 
 resource "aws_subnet" "database" {
-  vpc_id     = aws_vpc.database.id
+  vpc_id     = aws_vpc.main.id
   count = length(var.database_cidr)
   cidr_block = var.database_cidr[count.index]
   availability_zone=local.az_names[count.index]
