@@ -77,3 +77,21 @@ resource "aws_subnet" "database" {
     var.database_subnet_tags
   )
 }
+
+#Public route table
+
+resource "aws_route_table" "public_route" {
+  vpc_id = aws_vpc.example.id
+
+
+  tags = local.public_route_final_tags
+}
+
+
+#Private route table
+
+resource "aws_route_table" "private_route" {
+  vpc_id = aws_vpc.example.id
+
+  tags = local.private_route_final_tags
+}
