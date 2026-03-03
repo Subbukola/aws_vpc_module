@@ -166,7 +166,7 @@ resource "aws_route_table_association" "private" {
 
 # database subnet association
 
-resource "aws_route_table_association" "private" {
+resource "aws_route_table_association" "database" {
   subnet_id      = aws_subnet.database[count.index].id
   route_table_id = aws_route_table.private_route
 }
