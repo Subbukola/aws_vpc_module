@@ -159,7 +159,7 @@ resource "aws_route" "private_route" {
 
 #adding route to database route table
 resource "aws_route" "database_route" {
-  route_table_id            = aws_route_table.database_route
+  route_table_id            = aws_route_table.database_route.id
   destination_cidr_block    = "0.0.0.0/0"
   nat_gateway_id=aws_nat_gateway.nat.id
 }
@@ -188,5 +188,5 @@ resource "aws_route_table_association" "private" {
 resource "aws_route_table_association" "database" {
   count = length(var.database_cidr)
   subnet_id      = aws_subnet.database[count.index].id
-  route_table_id = aws_route_table.database_route
+  route_table_id = aws_route_table.database_route.id
 }
