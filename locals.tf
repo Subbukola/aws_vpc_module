@@ -29,7 +29,7 @@ locals {
 
     local.common_tags,
     {
-        Name="${var.project}-${var.env}-public-route"
+        Name="${var.project}-${var.env}-vpc-public-route"
     },
     var.public_route_tags
 
@@ -46,6 +46,29 @@ locals {
 
 
   )
+
+  database_route_final_tags= merge(
+
+    local.common_tags,
+    {
+        Name="${var.project}-${var.env}-vpc-database-route"
+    },
+    var.database_route_tags
+
+
+  )
+
+
+  # database_route_final_tags=merge(
+
+  #   local.common_tags,
+  #   {
+  #       Name="${var.project}-${var.env}-vpc-database-route"
+  #   },
+  #   var.database_route_tags
+
+
+  # )
   
 
     #public_subnet_final_tags= {}

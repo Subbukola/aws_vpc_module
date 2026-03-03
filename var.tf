@@ -77,6 +77,11 @@ variable "private_route_tags" {
   
 }
 
+variable "database_route_tags" {
+    default = {}
+  
+}
+
 variable "eip_tags" {
     default = {}
   

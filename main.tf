@@ -96,6 +96,15 @@ resource "aws_route_table" "private_route" {
   tags = local.private_route_final_tags
 }
 
+#database route table
+resource "aws_route_table" "database_route" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = local.database_route_final_tags
+}
+
+
+
 #adding route to public route table
 resource "aws_route" "public_route" {
   route_table_id            = aws_route_table.public_route.id
@@ -148,6 +157,14 @@ resource "aws_route" "private_route" {
   nat_gateway_id=aws_nat_gateway.nat.id
 }
 
+#adding route to database route table
+resource "aws_route" "database_route" {
+  route_table_id            = aws_route_table.database_route
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id=aws_nat_gateway.nat.id
+}
+
+
 # public subnet association
 
 resource "aws_route_table_association" "public" {
@@ -171,5 +188,5 @@ resource "aws_route_table_association" "private" {
 resource "aws_route_table_association" "database" {
   count = length(var.database_cidr)
   subnet_id      = aws_subnet.database[count.index].id
-  route_table_id = aws_route_table.private_route.id
+  route_table_id = aws_route_table.database_route
 }
