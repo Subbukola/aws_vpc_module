@@ -192,6 +192,3 @@ resource "aws_route_table_association" "database" {
 }
 
 
-data "aws_vpc" "default_vpc" {
-  default = true
-}

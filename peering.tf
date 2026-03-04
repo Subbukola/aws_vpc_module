@@ -1,7 +1,7 @@
-resource "aws_vpc_peering_connection" "foo" {
+resource "aws_vpc_peering_connection" "vpc_peering" {
 
   #Accepter
-  peer_vpc_id   = aws_vpc.default.id
+  peer_vpc_id   = aws_vpc.default_vpc.id
 
   #requester
   vpc_id        = aws_vpc.vpc.id
