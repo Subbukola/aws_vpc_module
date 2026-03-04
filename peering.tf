@@ -1,3 +1,8 @@
+data "aws_vpc" "default_vpc" {
+  default = true
+}
+
+
 resource "aws_vpc_peering_connection" "foo" {
 
   #Accepter
