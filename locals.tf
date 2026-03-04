@@ -69,6 +69,17 @@ locals {
 
 
   # )
+
+    vpc_peering_final_tags= merge(
+
+    local.common_tags,
+    {
+        Name="${var.project}-${var.env}-vpc-peering"
+    },
+    var.vpc_peering_tags
+
+
+  )
   
 
     #public_subnet_final_tags= {}

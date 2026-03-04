@@ -91,3 +91,8 @@ variable "NAT_tags" {
     default = {}
   
 }
+
+variable "vpc_peering_tags" {
+    default = {}
+  
+}
