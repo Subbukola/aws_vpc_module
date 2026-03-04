@@ -190,3 +190,8 @@ resource "aws_route_table_association" "database" {
   subnet_id      = aws_subnet.database[count.index].id
   route_table_id = aws_route_table.database_route.id
 }
+
+
+data "aws_vpc" "default_vpc" {
+  default = true
+}
