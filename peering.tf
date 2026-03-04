@@ -10,9 +10,7 @@ resource "aws_vpc_peering_connection" "vpc_peering" {
   #accepting auto peer request
   auto_accept   = true
 
-  tags = {
-    Name = "VPC Peering between foo and bar"
-  }
+  tags = local.vpc_peering_final_tags
 
 
 }   
