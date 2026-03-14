@@ -21,3 +21,4 @@ data "aws_route_table" "default_rt" {
     values = ["true"]
   }
 }
+
